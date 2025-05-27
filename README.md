@@ -1,5 +1,7 @@
 # ai-tarot
 
+Already generated tarot cards: [https://evgenyigumnov.github.io/ai-tarot](https://evgenyigumnov.github.io/ai-tarot)
+
 ## Installation
 ```
 pip install -r requirements.txt
