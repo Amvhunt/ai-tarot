@@ -1,5 +1,7 @@
 # ai-tarot
 
+AI-Tarot is a Python-based tool to generate custom Tarot card illustrations using OpenAI's image models. Define your desired art style, run the script with your API key, and get a full deck of uniquely styled Tarot cards. Perfect for creatives, game designers, or spiritual enthusiasts.
+
 Already generated tarot cards: [https://evgenyigumnov.github.io/ai-tarot](https://evgenyigumnov.github.io/ai-tarot)
 
 ## Installation
