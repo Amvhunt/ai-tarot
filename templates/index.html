@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create your Tarot Deck with AI!</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='materialize/css/materialize.min.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Create your Tarot deck with AI!</h2>
+    <div class="input-field">
+      <input
+        type="text"
+        id="deck-style"
+        placeholder="Deck style description, e.g.: 3D futuristic anime style"
+      >
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Generate!</button>
+  </div>
+
+  <div class="container">
+    <h3>Or choose an existing Tarot deck</h3>
+
+    {% for deck in decks %}
+      <a href="deck/{{ deck.id }}">
+        {{ deck.name }}
+        <h5>{{ deck.style }}</h5>
+
+        <div class="row">
+          {% for card in deck.cards[1:7] %}
+            <div class="col s6 m3 l2">
+              <img
+                src="static/deck/{{ deck.id }}/{{ card.id }}.png"
+                alt="{{ card.name }}"
+                class="responsive-img"
+                style="max-height: 300px;"
+              >
+            </div>
+          {% endfor %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="{{ url_for('static', filename='materialize/js/materialize.min.js') }}"></script>
+</body>
+</html>

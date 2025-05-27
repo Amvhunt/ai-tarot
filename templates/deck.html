@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarot Deck - {{ deck.style }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='materialize/css/materialize.min.css') }}">
+</head>
+<body>
+<div class="container">
+  <h4>Tarot Deck</h4>
+  <h5>{{ deck.style }}</h5>
+
+<div id="card-modal" class="modal">
+  <div class="modal-content" style="position: relative; padding: 0;">
+    <button
+      class="modal-close btn-flat"
+      style="
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-size: 1.8rem;
+        line-height: 1;
+        color: #444;
+        z-index: 10;
+      "
+      aria-label="Close"
+    >&times;</button>
+
+    <img
+      id="modal-image"
+      src=""
+      alt=""
+      class="responsive-img"
+      style="
+        display: block;
+        max-height: 70vh;
+        width: auto;
+        margin: 0 auto;
+      "
+    />
+  </div>
+</div>
+
+
+  <h5>Major Arcana</h5>
+  <div class="row">
+    {% for j in range(0, 22) %}
+    <div class="col s6 m3 l2">
+      <img
+        src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        alt="{{ cards[j].name }}"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+    {% endfor %}
+  </div>
+
+  <h5>Minor Arcana — Wands</h5>
+  <div class="row">
+    {% for j in range(22, 36) %}
+    <div class="col s6 m3 l2">
+      <img
+        src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        alt="{{ cards[j].name }}"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+    {% endfor %}
+  </div>
+
+  <h5>Minor Arcana — Cups</h5>
+  <div class="row">
+    {% for j in range(36, 50) %}
+    <div class="col s6 m3 l2">
+      <img
+        src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        alt="{{ cards[j].name }}"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+    {% endfor %}
+  </div>
+
+  <h5>Minor Arcana — Swords</h5>
+  <div class="row">
+    {% for j in range(50, 64) %}
+    <div class="col s6 m3 l2">
+      <img
+        src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        alt="{{ cards[j].name }}"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+    {% endfor %}
+  </div>
+
+  <h5>Minor Arcana — Pentacles</h5>
+  <div class="row">
+    {% for j in range(64, 78) %}
+    <div class="col s6 m3 l2">
+      <img
+        src="/static/deck/{{ deck.id }}/{{ j }}.png"
+        alt="{{ cards[j].name }}"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+    {% endfor %}
+  </div>
+
+  <h5>Card Back</h5>
+  <div class="row">
+    <div class="col s6 m3 l2">
+      <img
+        src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        alt="Card Back"
+        class="responsive-img card-img"
+        data-full-src="{{ url_for('static', filename='deck/' ~ deck.id + '/' ~ j + '.png') }}"
+        style="max-height: 300px; cursor: pointer;"
+      />
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='materialize/js/materialize.min.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+
+    document.querySelectorAll('.card-img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        var src = this.getAttribute('data-full-src');
+        var alt = this.getAttribute('alt');
+        var modalImg = document.getElementById('modal-image');
+        modalImg.src = src;
+        modalImg.alt = alt;
+        var instance = M.Modal.getInstance(document.getElementById('card-modal'));
+        instance.open();
+      });
+    });
+  });
+</script>
+</body>
+</html>
