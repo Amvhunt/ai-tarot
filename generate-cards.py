@@ -3,7 +3,7 @@ from openai import OpenAI
 import os
 import argparse
 
-style = "Funny, comic style"
+style = "Ace of Wands, mystical tarot card, detailed, high resolution"
 quality = "high"
 output_dir = "generated-cards"
 
